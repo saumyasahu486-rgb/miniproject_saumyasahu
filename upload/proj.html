@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleSync | Your Personal Stylist</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">style<span>sync.</span></div>
+        <p class="side-label">YOUR SPACE</p>
+
+        <nav>
+            <a href="#home" class="nav-link active">⌂ &nbsp; Overview</a>
+            <a href="#wardrobe" class="nav-link">♧ &nbsp; My wardrobe</a>
+            <a href="#generator" class="nav-link">✧ &nbsp; Outfit studio</a>
+            <a href="#discover" class="nav-link">♡ &nbsp; Discover</a>
+            <a href="#favorites" class="nav-link">♥ &nbsp; Favourites</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="mini-profile">
+                <div class="avatar">S</div>
+                <div>
+                    <strong>Style Explorer</strong>
+                    <small>Fashion enthusiast</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <p class="date" id="today"></p>
+                <h2>Good style, good mood. ✨</h2>
+            </div>
+
+            <button class="add-btn" onclick="openModal()">
+                + Add clothing
+            </button>
+        </header>
+
+        <!-- HOME -->
+        <section id="home">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="eyebrow">YOUR PERSONAL FASHION ASSISTANT</span>
+                    <h1>Wear your<br><i>own kind</i> of style.</h1>
+                    <p>Mix your wardrobe. Discover new combinations.
+                       Make every outfit feel like YOU.</p>
+
+                    <a href="#generator" class="hero-btn">
+                        Create my look ↗
+                    </a>
+                </div>
+
+                <div class="hero-image"></div>
+                <div class="hero-tag">STYLE IS AN ATTITUDE ♡</div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-card">
+                    <span>👚</span>
+                    <p>WARDROBE ITEMS</p>
+                    <h2 id="totalItems">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span>✨</span>
+                    <p>OUTFITS CREATED</p>
+                    <h2 id="totalGenerated">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span>❤️</span>
+                    <p>FAVOURITES</p>
+                    <h2 id="totalFavorites">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- OUTFIT GENERATOR -->
+        <section id="generator" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">LET'S GET STYLING</span>
+                    <h2>The Outfit Studio.</h2>
+                    <p>Tell us the vibe. We'll mix the magic.</p>
+                </div>
+            </div>
+
+            <div class="studio">
+
+                <div class="controls">
+
+                    <label>What's the occasion?</label>
+                    <select id="occasion">
+                        <option value="College">College day</option>
+                        <option value="Party">Party night</option>
+                        <option value="Casual">Casual outing</option>
+                        <option value="Formal">Formal event</option>
+                        <option value="Date">Special occasion</option>
+                    </select>
+
+                    <label>Choose your aesthetic</label>
+                    <select id="aesthetic">
+                        <option value="Any">Surprise me!</option>
+                        <option value="Chic">Chic</option>
+                        <option value="Minimal">Minimal</option>
+                        <option value="Elegant">Elegant</option>
+                        <option value="Streetwear">Streetwear</option>
+                    </select>
+
+                    <label>Choose your mood</label>
+
+                    <div class="mood-options">
+                        <button class="mood active" data-mood="Confident">🔥 Confident</button>
+                        <button class="mood" data-mood="Soft">🌷 Soft</button>
+                        <button class="mood" data-mood="Bold">⚡ Bold</button>
+                    </div>
+
+                    <button class="generate-btn" onclick="generateOutfit()">
+                        ✨ Generate my outfit
+                    </button>
+                </div>
+
+                <div class="outfit-display" id="outfitDisplay">
+                    <div class="empty-state">
+                        <div>✧</div>
+                        <h3>Your next favourite look awaits.</h3>
+                        <p>Choose your preferences and create an outfit!</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- WARDROBE -->
+        <section id="wardrobe" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">YOUR COLLECTION</span>
+                    <h2>The Wardrobe.</h2>
+                    <p>Every piece tells a story.</p>
+                </div>
+
+                <button class="outline-btn" onclick="openModal()">
+                    + Add piece
+                </button>
+            </div>
+
+            <div class="filters">
+                <button class="filter active" data-filter="All">All</button>
+                <button class="filter" data-filter="Top">Tops</button>
+                <button class="filter" data-filter="Bottom">Bottoms</button>
+                <button class="filter" data-filter="Shoes">Shoes</button>
+                <button class="filter" data-filter="Accessory">Accessories</button>
+            </div>
+
+            <div class="wardrobe-grid" id="wardrobeGrid"></div>
+
+        </section>
+
+        <!-- DISCOVER -->
+        <section id="discover" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">A LITTLE INSPIRATION</span>
+                    <h2>Explore the aesthetic.</h2>
+                    <p>Ideas for your next iconic look.</p>
+                </div>
+            </div>
+
+            <div class="discover-grid">
+
+                <div class="discover-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700" alt="Casual fashion">
+                    <div class="discover-caption">
+                        <h3>Effortless Chic</h3>
+                        <p>Simple. Stylish. Timeless.</p>
+                    </div>
+                </div>
+
+                <div class="discover-card">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700" alt="Elegant fashion">
+                    <div class="discover-caption">
+                        <h3>Modern Elegance</h3>
+                        <p>Class never goes out of style.</p>
+                    </div>
+                </div>
+
+                <div class="discover-card">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700" alt="Streetwear fashion">
+                    <div class="discover-caption">
+                        <h3>Street Style</h3>
+                        <p>Make your own rules.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAVOURITES -->
+        <section id="favorites" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">YOUR PERSONAL COLLECTION</span>
+                    <h2>Saved with love. ♡</h2>
+                    <p>Your favourite outfit combinations.</p>
+                </div>
+            </div>
+
+            <div class="favorite-grid" id="favoriteGrid"></div>
+
+        </section>
+
+        <footer>
+            <h2>style<span>sync.</span></h2>
+            <p>Fashion is what you buy. Style is what you do with it.</p>
+            <p>Designed with ♡ by StyleSync</p>
+        </footer>
+
+    </main>
+</div>
+
+<!-- ADD CLOTHING MODAL -->
+<div class="modal" id="addModal">
+    <div class="modal-box">
+
+        <button class="close-btn" onclick="closeModal()">×</button>
+
+        <span class="eyebrow">EXPAND YOUR COLLECTION</span>
+        <h2>Add a new piece.</h2>
+
+        <form id="clothingForm">
+
+            <label>Clothing name</label>
+            <input type="text" id="itemName" placeholder="e.g. White shirt" required>
+
+            <label>Category</label>
+            <select id="category">
+                <option value="Top">Top</option>
+                <option value="Bottom">Bottom</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Accessory">Accessory</option>
+            </select>
+
+            <label>Colour</label>
+            <input type="text" id="itemColor" placeholder="e.g. White" required>
+
+            <label>Style</label>
+            <select id="itemStyle">
+                <option value="Chic">Chic</option>
+                <option value="Minimal">Minimal</option>
+                <option value="Elegant">Elegant</option>
+                <option value="Streetwear">Streetwear</option>
+            </select>
+
+            <label>Upload clothing picture</label>
+            <input type="file" id="itemImage" accept="image/*">
+
+            <button type="submit" class="generate-btn">
+                Add to my wardrobe ♡
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="jscript.js"></script>
+</body>
+</html>
